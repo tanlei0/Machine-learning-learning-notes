@@ -92,6 +92,8 @@
 ## 神经网络softmax函数
 值得注意的是：对于一般的Sigmoid和Relu激活函数需求的是(1,1)的输入，而对于softmax需要的输入是(m,1). 
 
+softmax的组成有两部分，第一exp函数，将数值转换为非负；第二部分才是累加将值域控制在[0,1]之间.
+
 当m = 2时,softmax是特殊的logistic. 大致的证明是：
 
 sigmoid输出的考虑为p = 1 的概率,而softmax 的两个输出明显是冗余的.
