@@ -24,7 +24,9 @@
 
 - 在**监督学习**中，模型的**泛化误差**可**分解**为偏差、方差与噪声之和。
 
-  <div align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=Err(x)&space;=&space;Bias^2&space;&plus;&space;Variance&space;&plus;&space;Noise" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Err(x)&space;=&space;Bias^2&space;&plus;&space;Variance&space;&plus;&space;Noise" title="Err(x) = Bias^2 + Variance + Noise" /></a></div>
+  $$
+  Err(x) = Bias^2 + Variance + Noise
+  $$
 
 - **偏差**用于描述模型的**拟合能力**
   **方差**用于描述模型的**稳定性**
@@ -55,23 +57,26 @@
 ### 1.3 偏差与方差的计算公式
 
 - 记在**训练集 D** 上学得的模型为
-
-  <div align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=f(x;D)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?f(x;D)" title="f(x;D)" /></a></div>
-
+$$
+  f(x;D)
+$$
+  
   模型的**期望预测**为
-
-  <div align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=\hat&space;f(x)&space;=&space;\Bbb&space;E_{D}[f(x;&space;D)]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat&space;f(x)&space;=&space;\Bbb&space;E_{D}[f(x;&space;D)]" title="\hat f(x) = \Bbb E_{D}[f(x; D)]" /></a></div>
-
+$$
+f(x) = E_D[f(x;D)]
+$$
+  
 - **偏差**（Bias）
-
-  <div align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=bias^2(x)&space;=&space;(\hat&space;f(x)&space;-&space;y)^2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?bias^2(x)&space;=&space;(\hat&space;f(x)&space;-&space;y)^2" title="bias^2(x) = (\hat f(x) - y)^2" /></a></div>
-
+$$
+Bias^2(x) = \left(f(x) - y \right)^2
+$$
   > **偏差**度量了学习算法的期望预测与真实结果的偏离程度，即刻画了学习算法本身的拟合能力；
 
 - **方差**（Variance）
-
-  <div align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=var(x)&space;=&space;\Bbb&space;E_{D}[(f(x;&space;D)&space;-&space;\hat&space;f(x))^2]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?var(x)&space;=&space;\Bbb&space;E_{D}[(f(x;&space;D)&space;-&space;\hat&space;f(x))^2]" title="var(x) = \Bbb E_{D}[(f(x; D) - \hat f(x))^2]" /></a></div>
-
+$$
+var(x) = E_D\left[ \left( f(x;D)-f(x)\right)^2\right]
+$$
+  
   > **方差**度量了同样大小的**训练集的变动**所导致的学习性能的变化，即刻画了数据扰动所造成的影响（模型的稳定性）；
 
 - **噪声**则表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界，即刻画了学习问题本身的难度。
@@ -168,26 +173,33 @@
 <img src="_asset/混肴矩阵.png">
 
 **准确率**（accuracy）
-
-<div align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=ACC&space;=&space;\frac{TP&space;&plus;&space;TN}{TP&space;&plus;&space;TN&space;&plus;&space;FP&space;&plus;&space;FN}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?ACC&space;=&space;\frac{TP&space;&plus;&space;TN}{TP&space;&plus;&space;TN&space;&plus;&space;FP&space;&plus;&space;FN}" title="ACC = \frac{TP + TN}{TP + TN + FP + FN}" /></a></div>
+$$
+ACC = \frac{TP+TN}{TP+TN+FP+FN}
+$$
 
 **精确率**（precision）【查准率】
 
-<div align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=P&space;=&space;\frac{TP}{TP&space;&plus;&space;FP}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?P&space;=&space;\frac{TP}{TP&space;&plus;&space;FP}" title="P = \frac{TP}{TP + FP}" /></a></div>
+$$
+P = \frac{TP}{TP+FP}
+$$
 
 > 准确率与精确率的区别：
 >
 > > 在正负样本不平衡的情况下，**准确率**这个评价指标有很大的缺陷。比如在互联网广告里面，点击的数量是很少的，一般只有千分之几，如果用acc，即使全部预测成负类（不点击）acc 也有 99% 以上，没有意义。
 
 **召回率**（recall, sensitivity, true positive rate）【查全率】
-
-<div align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=R&space;=&space;\frac{TP}{TP&space;&plus;&space;FN}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?R&space;=&space;\frac{TP}{TP&space;&plus;&space;FN}" title="R = \frac{TP}{TP + FN}" /></a></div>
+$$
+R = \frac{TP}{TP+FN}
+$$
 
 **F1值**——精确率和召回率的调和均值
 
-<div align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=\frac{2}{F_{1}}&space;=&space;\frac{1}{P}&space;&plus;&space;\frac{1}{R}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\frac{2}{F_{1}}&space;=&space;\frac{1}{P}&space;&plus;&space;\frac{1}{R}" title="\frac{2}{F_{1}} = \frac{1}{P} + \frac{1}{R}" /></a></div>
-
-<div align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=F_{1}&space;=&space;\frac{2TP}{2TP&space;&plus;&space;FP&space;&plus;&space;FN}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F_{1}&space;=&space;\frac{2TP}{2TP&space;&plus;&space;FP&space;&plus;&space;FN}" title="F_{1} = \frac{2TP}{2TP + FP + FN}" /></a></div>
+$$
+\frac{2}{F_1} = \frac{1}{P} + \frac{1}{R}
+$$
+$$
+F_1 = \frac{2TP}{2TP+FP+FN}
+$$
 
 > 只有当精确率和召回率都很高时，F1值才会高
 
@@ -200,9 +212,13 @@
 <img src="_asset/ROC.png">
 
 - 横坐标：**1-Specificity**，伪正类率(False positive rate， FPR)，**预测为正但实际为负**的样本占**所有负例样本**的比例；
-
+$$
+FPR = \frac{FP}{TN+FP}
+$$
 - 纵坐标：**Sensitivity**，真正类率(True positive rate， TPR)，**预测为正且实际为正**的样本占**所有正例样本**的比例。
-
+$$
+TPR = \frac{TP}{TP+FN}
+$$
 在一个二分类模型中，假设采用逻辑回归分类器，其给出针对每个实例为正类的概率，那么通过设定一个阈值如0.6，概率大于等于0.6的为正类，小于0.6的为负类。对应的就可以算出一组(FPR,TPR)，在平面中得到对应坐标点。随着阈值的逐渐减小，越来越多的实例被划分为正类，但是这些正类中同样也掺杂着真正的负实例，即TPR和FPR会同时增大。阈值最大时，对应坐标点为(0,0)，阈值最小时，对应坐标点(1,1)。
 
 如下面这幅图，(a)图中实线为ROC曲线，线上每个点对应一个阈值。
